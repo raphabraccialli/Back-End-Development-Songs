@@ -51,3 +51,21 @@ def parse_json(data):
 ######################################################################
 # INSERT CODE HERE
 ######################################################################
+
+# HEALTH
+@app.route('/health')
+def health():
+    return {'status': 'OK'}, 200
+
+# COUNT
+@app.route('/count')
+def count():
+    return {'count': len(songs_list)}, 200
+
+# GET
+@app.route('/song')
+def get():
+    cursor_of_songs = db.songs.find({})
+    return  json_util.dumps({
+        'songs': list(cursor_of_songs)
+    })
